@@ -7,7 +7,7 @@ Installation instructions
 
 ## 2. Install Vagrant
 `brew install vagrant`
-or 
+or
 `brew cask install vagrant`
 
 ## 3. Configure source directory to be mounted on box
@@ -25,8 +25,12 @@ Your box should initialise and install all the required development tools
 `vagrant plugin install vagrant-unison2`
 
 ## 7. Start unison file synching
-'vagrant unison-sync-polling'
+`vagrant unison-sync-polling`
+
 This will start polling every second your local machine share directory and the directory on the virtual machine and keep them in sync as files change. You may want to do this in another console window as this will stay running until you hit Ctrl+C
+
+- If there is an error mentioning inconsistent state, try deleting the archives:
+    On Mac OS X, the local files are stored in ~/Library/Application\ Support/Unison you can also create a ~/.unison folder (if it is already not created) so that Unison stores the archives in that location
 
 ## 8. SSH onto box
 `vagrant ssh`
