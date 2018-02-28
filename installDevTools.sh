@@ -27,11 +27,11 @@ sudo pip install python-glanceclient
 sudo yum upgrade -y python*
 fi
 
-if [ ! -f "/usr/bin/unison" ]; then
+#if [ ! -f "/usr/bin/unison" ]; then
   #If this line fails, it's probably because the version has updated check out http://ftp5.gwdg.de/pub/linux/archlinux/extra/os/x86_64/ and fix the url to get the new version
-  curl -o unison.tar.xz http://ftp5.gwdg.de/pub/linux/archlinux/extra/os/x86_64/unison-2.48.4-2-x86_64.pkg.tar.xz
-  sudo tar xf unison.tar.xz -C /
-fi
+#  curl -o unison.tar.xz http://ftp5.gwdg.de/pub/linux/archlinux/extra/os/x86_64/unison-2.48.4-2-x86_64.pkg.tar.xz
+#  sudo tar xf unison.tar.xz -C /
+#fi
 # installing ntpd
 sudo yum install -y ntp
 sudo systemctl enable ntpd

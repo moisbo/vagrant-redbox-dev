@@ -41,10 +41,7 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   # Required configs
-  config.unison.host_folder = "/Users/moises/source/github/redbox-portal"  #relative to the folder your Vagrantfile is in
-  config.unison.guest_folder = "/opt/redbox-portal" #relative to the vagrant home folder (e.g. /home/vagrant)
-  config.unison.perms = 0
-  config.unison.ignore = "Name {.DS_Store,.git,node_modules,.idea}"
+  config.vm.synced_folder "../", "/home/vagrant/source"
   config.vm.provider 'virtualbox' do |vb|
    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
    vb.memory = 2048
