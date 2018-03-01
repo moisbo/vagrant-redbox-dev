@@ -41,7 +41,7 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   # Required configs
-  config.vm.synced_folder "../", "/home/vagrant/source"
+  config.vm.synced_folder "/Users/moises/source/github/redbox-portal", "/opt/redbox-portal"
   config.vm.provider 'virtualbox' do |vb|
    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
    vb.memory = 2048
