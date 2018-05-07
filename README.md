@@ -32,5 +32,10 @@ This will start polling every second your local machine share directory and the 
 - If there is an error mentioning inconsistent state, try deleting the archives:
     On Mac OS X, the local files are stored in ~/Library/Application\ Support/Unison you can also create a ~/.unison folder (if it is already not created) so that Unison stores the archives in that location
 
+### Sync Issues
+
+- Run `vagrant unison-cleanup` this will delete the files in the guest machine
+- Delete `~/.unison/` key files on host machine
+
 ## 8. SSH onto box
 `vagrant ssh`
