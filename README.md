@@ -56,7 +56,10 @@ vagrant install plugin vagrant-vbguest
 ```
 
 
-# Example fixing VBOX
+# Example fixing vboxfs
+
+*VirtualBox: mount.vboxsf: mounting failed with the error: No such device*
+
 
 from: https://stackoverflow.com/questions/28328775/virtualbox-mount-vboxsf-mounting-failed-with-the-error-no-such-device
 
