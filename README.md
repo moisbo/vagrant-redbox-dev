@@ -57,7 +57,8 @@ vagrant install plugin vagrant-vbguest
 
 
 # Example fixing VBOX
-# from: https://stackoverflow.com/questions/28328775/virtualbox-mount-vboxsf-mounting-failed-with-the-error-no-such-device
+
+from: https://stackoverflow.com/questions/28328775/virtualbox-mount-vboxsf-mounting-failed-with-the-error-no-such-device
 
 ```
 sudo yum update
