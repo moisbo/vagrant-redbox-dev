@@ -1,7 +1,7 @@
 Vagrant configuration for ReDBox development environment using VirtualBox
 ====================
 
-Installation instructions
+Mac OS Installation instructions
 ## 1. [Install Homebrew](http://brew.sh/)
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
@@ -10,19 +10,20 @@ Installation instructions
 or
 `brew cask install vagrant`
 
-## 3. Configure source directory to be mounted on box
-Edit the Vagrantfile and set the config.unison.host_folder to the directory you'd like to sync
-
-## 4. Bring box up
+## 3. Bring box up
 `vagrant up`
 
 Your box should initialise and install all the required development tools
 
-## 5. Install unison on local machine
-`brew install unison`
+## 4. SSH onto box
+`vagrant ssh`
 
-## 6. Install vagrant unison plugin
-`vagrant plugin install vagrant-unison2`
+---
+### Sync Issues
+
+If you get Vagrant errors when mounting synced folder. Installing the VirtualBox Guest Additions can help
+
+`vagrant plugin install vagrant-vbguest`
 
 ## 7. Start unison file synching
 `vagrant unison-sync-polling`
