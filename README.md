@@ -30,7 +30,46 @@ Your box should initialise and install all the required development tools
 This will start polling every second your local machine share directory and the directory on the virtual machine and keep them in sync as files change. You may want to do this in another console window as this will stay running until you hit Ctrl+C
 
 - If there is an error mentioning inconsistent state, try deleting the archives:
-    On Mac OS X, the local files are stored in ~/Library/Application\ Support/Unison you can also create a ~/.unison folder (if it is already not created) so that Unison stores the archives in that location
-    
+    On Mac OS X, the local files are stored in ~/Library/Application\ Support/Unison you can also create a ~/.unison folder (if it is not already created) so that Unison stores the archives in that location
+
+### Sync Issues
+
+- Run `vagrant unison-cleanup` this will delete the files in the guest machine
+- Delete `~/.unison/` key files on host machine
+
 ## 8. SSH onto box
 `vagrant ssh`
+
+## 9. Using synced_folder
+
+We can add additional synced_folder's
+
+```
+config.vm.synced_folder "/Users/moises/source/code.research/sails-hook-redbox-omero", "/opt/hooks/sails-hook-redbox-omero", id: "omero"
+```
+
+To make this work
+
+```
+vagrant install plugin vagrant-vbguest
+```
+
+
+# Example fixing VBOX
+# from: https://stackoverflow.com/questions/28328775/virtualbox-mount-vboxsf-mounting-failed-with-the-error-no-such-device
+
+```
+sudo yum update
+sudo yum install kernel-$(uname -r) kernel-devel kernel-headers # or: reinstall
+rpm -qf /lib/modules/$(uname -r)/build
+ls -la /lib/modules/$(uname -r)/build
+```
+
+```
+#sudo reboot # and re-login
+```
+
+```
+sudo ln -sv /usr/src/kernels/$(uname -r) /lib/modules/$(uname -r)/build
+sudo /opt/VBoxGuestAdditions-*/init/vboxadd setup
+```

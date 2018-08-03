@@ -24,6 +24,7 @@ Vagrant.configure(2) do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 1500, host: 1500
+  config.vm.network "forwarded_port", guest: 25, host: 25
   config.vm.network "forwarded_port", guest: 27017, host: 27017
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -38,15 +39,18 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  #config.vm.synced_folder "/Users/moises/source/code.research/sails-hook-redbox-omero", "/opt/hooks/sails-hook-redbox-omero", id: "omero"
+  config.vm.synced_folder "/Users/moises/source/qcif/sails-hook-redbox-gitlab", "/opt/hooks/sails-hook-redbox-gitlab", id: "gitlab"
   # Required configs
-  config.unison.host_folder = "../"  #relative to the folder your Vagrantfile is in
-  config.unison.guest_folder = "source" #relative to the vagrant home folder (e.g. /home/vagrant)
+  #config.unison.host_folder = "/Users/moises/source/qcif/redbox-portal"  #relative to the folder your Vagrantfile is in
+  config.unison.host_folder = "/Users/moises/source/github/redbox-portal"  #relative to the folder your Vagrantfile is in
+  #config.unison.host_folder = "/Users/moises/source/github.com-uts/redbox-portal"  #relative to the folder your Vagrantfile is in
+  config.unison.guest_folder = "/opt/redbox-portal" #relative to the vagrant home folder (e.g. /home/vagrant)
   config.unison.perms = 0
-  config.unison.ignore = "Name {.DS_Store,.git,node_modules}"
+  config.unison.ignore = "Name {.DS_Store,.git,node_modules, *.swp}"
   config.vm.provider 'virtualbox' do |vb|
    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
-   vb.memory = 1024
+   vb.memory = 3072
    vb.cpus = 2
   end
 

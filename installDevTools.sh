@@ -1,5 +1,7 @@
 #!/bin/bash
-sudo yum install -y wget java-1.7.0-openjdk java-1.7.0-openjdk-devel unzip git ruby
+sudo yum update && sudo yum -y install kernel-headers kernel-devel
+sudo yum install -y wget java-1.7.0-openjdk java-1.7.0-openjdk-devel unzip git ruby vim
+
 if [ ! -f "/usr/bin/mvn" ]; then
   # Control will enter here if $DIRECTORY doesn't exist.
   #wget "https://archive.apache.org/dist/maven/binaries/apache-maven-2.2.1-bin.zip"
@@ -29,7 +31,7 @@ fi
 
 if [ ! -f "/usr/bin/unison" ]; then
   #If this line fails, it's probably because the version has updated check out http://ftp5.gwdg.de/pub/linux/archlinux/extra/os/x86_64/ and fix the url to get the new version
-  curl -o unison.tar.xz http://ftp5.gwdg.de/pub/linux/archlinux/extra/os/x86_64/unison-2.48.4-2-x86_64.pkg.tar.xz
+  curl -o unison.tar.xz http://ftp5.gwdg.de/pub/linux/archlinux/extra/os/x86_64/unison-2.51.2-1-x86_64.pkg.tar.xz
   sudo tar xf unison.tar.xz -C /
 fi
 # installing ntpd
