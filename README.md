@@ -46,20 +46,23 @@ This will start polling every second your local machine share directory and the 
 We can add additional synced_folder's
 
 ```
+# Running synced_folder on a hook
 config.vm.synced_folder "/Users/moises/source/code.research/sails-hook-redbox-omero", "/opt/hooks/sails-hook-redbox-omero", id: "omero"
+# Running synced_folder on redbox-portal
+config.vm.synced_folder "/Users/moises/source/github/redbox-portal", "/opt/redbox-portal", id: "redbox-portal", type: "rsync", rsync__auto: true, rsync__exclude: ['lodash-lib','node_modules','.git']
 ```
+
 
 To make this work
 
 ```
-vagrant install plugin vagrant-vbguest
+vagrant plugin install vagrant-vbguest
 ```
 
 
-# Example fixing vboxfs
+### If you cannot run vagrant-vbguest; this might help: Example fixing vboxfs
 
 *VirtualBox: mount.vboxsf: mounting failed with the error: No such device*
-
 
 from: https://stackoverflow.com/questions/28328775/virtualbox-mount-vboxsf-mounting-failed-with-the-error-no-such-device
 
@@ -69,11 +72,16 @@ sudo yum install kernel-$(uname -r) kernel-devel kernel-headers # or: reinstall
 rpm -qf /lib/modules/$(uname -r)/build
 ls -la /lib/modules/$(uname -r)/build
 ```
-
+Then:
 ```
 #sudo reboot # and re-login
 ```
-
+then Run:
+```
+vagrant --provision
+vagrant plugin install vagrant-vbguest
+```
+You can manually run vboxxadd:
 ```
 sudo ln -sv /usr/src/kernels/$(uname -r) /lib/modules/$(uname -r)/build
 sudo /opt/VBoxGuestAdditions-*/init/vboxadd setup
