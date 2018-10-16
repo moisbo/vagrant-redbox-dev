@@ -30,16 +30,15 @@ sudo yum upgrade -y python*
 fi
 
 if [ ! -f "/usr/bin/unison" ]; then
-  #If this line fails, it's probably because the version has updated check out http://ftp5.gwdg.de/pub/linux/archlinux/extra/os/x86_64/ and fix the url to get the new version
-  curl -o unison.tar.xz https://raw.githubusercontent.com/moisbo/vagrant-redbox-dev/master/unison-2.48.4-2-x86_64.pkg.tar.xz
-  sudo tar xf unison.tar.xz -C /
-  echo local machine should have same version if cannot install with brew check Formulae https://github.com/Homebrew/homebrew-core/blob/master/Formula/unison.rb
-  # Or You can try to compile it!
-  #curl -o unison.tar.gz https://github.com/bcpierce00/unison/archive/v2.51.2.tar.gz
-  # sudo tar zxf unison.tar.xz -C
-  # cd unison
-  # make -j2
-  # make install
+  yum install -y  ocaml ocaml-camlp4-devel ctags ctags-etags
+  cd ~
+  git clone "https://github.com/bcpierce00/unison.git"
+  cd unison
+  latesttag=$(git describe --tags)
+  echo checking out ${latesttag}
+  git checkout ${latesttag}
+  make
+  sudo cp src/unison /bin/
 fi
 
 # installing ntpd

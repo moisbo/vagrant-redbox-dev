@@ -38,6 +38,11 @@ This will start polling every second your local machine share directory and the 
 - Run `vagrant unison-cleanup` this will delete the files in the guest machine
 - Delete `~/.unison/` key files on host machine
 
+### Sync Issues
+
+- Run `vagrant unison-cleanup` this will delete the files in the guest machine
+- Delete `~/.unison/` key files on host machine
+
 ## 8. SSH onto box
 `vagrant ssh`
 
