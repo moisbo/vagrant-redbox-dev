@@ -62,7 +62,6 @@ Vagrant.configure(2) do |config|
   # config.vm.synced_folder "/Users/moises/source/github/redbox-portal", "/opt/redbox-portal", id: "redbox-portal", type: "rsync", rsync__auto: true, rsync__exclude: ['lodash-lib','node_modules','.git']
   # config.vm.synced_folder "/Users/moises/source/code.research/sails-hook-redbox-omero", "/opt/hooks/sails-hook-redbox-omero", id: "omero"
   # config.vm.synced_folder "/Users/moises/source/github/sails-hook-redbox-gitlab", "/opt/hooks/sails-hook-redbox-gitlab", id: "gitlab"
->>>>>>> unison_compile
 
   config.vm.provider 'virtualbox' do |vb|
    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
