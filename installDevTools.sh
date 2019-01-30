@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo yum update && sudo yum -y install kernel-$(uname -r) kernel-headers kernel-devel ocaml
-sudo yum install -y wget java-1.7.0-openjdk java-1.7.0-openjdk-devel unzip git ruby vim
+sudo yum install -y wget java-1.7.0-openjdk java-1.7.0-openjdk-devel unzip git ruby vim inotify-tools
 
 if [ ! -f "/usr/bin/mvn" ]; then
   # Control will enter here if $DIRECTORY doesn't exist.

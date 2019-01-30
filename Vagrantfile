@@ -27,6 +27,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 25, host: 25
   config.vm.network "forwarded_port", guest: 27017, host: 27017
   config.vm.network "forwarded_port", guest: 9000, host: 9000
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.1 68.33.10"
@@ -42,9 +43,9 @@ Vagrant.configure(2) do |config|
   # argument is a set of non-required options.
 
   # If using unison:
-  #config.unison.host_folder = "/Users/moises/source/qcif/redbox-portal"  #relative to the folder your Vagrantfile is in
-  config.unison.host_folder = "/Users/moises/source/github/redbox-portal"  #relative to the folder your Vagrantfile is in
-  # config.unison.host_folder = "/Users/moises/source/github.com-uts/redbox-portal"  #relative to the folder your Vagrantfile is in
+  #config.unison.host_folder = "/Users/moises/source/github/redbox-portal"  #relative to the folder your Vagrantfile is in
+  config.unison.host_folder = "/Users/moises/source/code.research/redbox-portal"  #relative to the folder your Vagrantfile is in
+  # config.unison.host_folder = "/Users/moises/source/github-uts/redbox-portal"  #relative to the folder your Vagrantfile is in
   config.unison.guest_folder = "/opt/redbox-portal" #relative to the vagrant home folder (e.g. /home/vagrant)
   config.unison.perms = 0
   config.unison.ignore = "Name {.DS_Store,.git,node_modules, *.swp}"
@@ -54,7 +55,8 @@ Vagrant.configure(2) do |config|
   #config.vm.synced_folder "/Users/moises/source/github/redbox-portal", "/opt/redbox-portal", id: "redbox-portal", type: "rsync", rsync__auto: true, rsync__exclude: ['lodash-lib','node_modules','.git']
   #config.vm.synced_folder "/Users/moises/source/code.research/sails-hook-redbox-omero", "/opt/hooks/sails-hook-redbox-omero", id: "omero"
   #config.vm.synced_folder "/Users/moises/source/qcif/sails-hook-redbox-gitlab", "/opt/hooks/sails-hook-redbox-gitlab", id: "gitlab"
-  config.vm.synced_folder "/Users/moises/source/code.research/sails-hook-redbox-storage", "/opt/hooks/sails-hook-redbox-storage", id: "storage"
+  #config.vm.synced_folder "/Users/moises/source/code.research/sails-hook-redbox-labarchives", "/opt/hooks/sails-hook-redbox-labarchives", id: "labarchives"
+  config.vm.synced_folder "/Users/moises/source/code.research/rb2-migrate/test/storage", "/mnt/data/redbox1", id: "redbox1"
 
   # Use vm synced_folder to sync
   # Take note that this method is slower than unison
@@ -65,7 +67,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider 'virtualbox' do |vb|
    vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
-   vb.memory = 2048
+   vb.customize [ "modifyvm", :id, "--audio", "none" ]
+   vb.memory = 8192
    vb.cpus = 2
   end
 
